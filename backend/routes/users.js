@@ -1,12 +1,19 @@
 //Fichero que contiene las rutas de la API
 //Importamos y ejecutamos router de express
-var express = require('express');
+const express = require('express')
+const userController = require('../controllers/user.controller')
 
-var router = express.Router();
+//Router nos permite gestionar rutas de la API
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
+//Controlador de demo que contiene lo que se ejecutara
+//cuando hagamos la peticion
+
+//Peticiones HTTP
+router.get('/user/' /*RUTA*/, userController.getUsers /*FUNCION DEL CONTROLADOR*/);
+router.get('/user/:nombre', userController.getUser);
+router.post('/register', userController.postUserDemo);
+
+//Exportamos router para usar rutas en app.ts
 module.exports = router;
