@@ -1,27 +1,39 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+/*
+Configuració de express (pk cada cop que es guardi, s'engegi el servidor)
+A més indica que utilitzarem la URL api, exportant el modul creat a rutes
+ */
 
-var indexRouter = require('./routes');
-var usersRouter = require('./routes/users');
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors= require('cors')
+const morgan=require('morgan')
 
-var app = express();
+//con esto definimos las rutas de la carpeta "routes"
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/user');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//initializations
+const app = express()
 
-app.use(logger('dev'));
+//settings
+//Cuando haya variable de entorno sera PORT y sino 3000
+app.set('port', process.env.PORT || 3001);
+
+//middlewares
+app.use(morgan('dev'));
+app.use(cors());
+app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
+//definimos rutas por defecto
+app.use('/index', indexRouter);
+app.use('', usersRouter);
+
+
+
+//CONTROL DE ERRORES
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

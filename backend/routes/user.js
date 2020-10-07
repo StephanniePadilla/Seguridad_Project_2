@@ -12,8 +12,8 @@ const router = express.Router();
 
 //Peticiones HTTP
 router.get('/user/' /*RUTA*/, userController.getUsers /*FUNCION DEL CONTROLADOR*/);
-router.get('/user/:nombre', userController.getUser);
-router.post('/register', userController.postUserDemo);
+router.get('/user/:userId', userController.getUser);
+router.post('/register', userController.newUser);
 
 //Exportamos router para usar rutas en app.ts
 module.exports = router;
