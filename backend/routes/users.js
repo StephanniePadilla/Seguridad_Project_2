@@ -1,4 +1,7 @@
+//Fichero que contiene las rutas de la API
+//Importamos y ejecutamos router de express
 var express = require('express');
+
 var router = express.Router();
 
 /* GET users listing. */
