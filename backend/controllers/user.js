@@ -28,7 +28,7 @@ function getUser(req, res) {
         if (err) {
             return res.status(500).send({message: `Error al realizar la petición: ${err}`})
         }
-        else if (!userslist) {
+        else if (!user) {
             return res.status(400).send({message: 'El usuario no existe'})
         }
         else {

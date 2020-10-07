@@ -13,7 +13,7 @@ const router = express.Router()
 //cuando hagamos la peticion
 
 //Peticiones HTTP
-router.get('/user', userController.getUsers),
+router.get('/users', userController.getUsers),
 router.get('/user/:userId', userController.getUser),
 router.post('/register', userController.newUser),
 
